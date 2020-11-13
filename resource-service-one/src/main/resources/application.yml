@@ -6,11 +6,11 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8180/auth/realms/poc
+          issuer-uri: http://localhost:8080/auth/realms/poc
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8151/eureka/
+      default-zone: http://localhost:8761/eureka/
   instance:
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
