@@ -8,3 +8,9 @@ eureka:
 
 zuul:
   prefix: /api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,routes
