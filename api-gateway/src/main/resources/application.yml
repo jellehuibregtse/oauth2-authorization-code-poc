@@ -8,6 +8,9 @@ eureka:
 
 zuul:
   prefix: /api
+  routes:
+    resource-service-one:
+      sensitive-headers: Cookie,Set-Cookie
 
 management:
   endpoints:
