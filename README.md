@@ -62,10 +62,31 @@ Lastely, when a user is authenticated and authorized to the protected resource, 
 
 In conclusion, authentication is simply the question of "Who is this user?" and authorization "Are they allowed to do this?". This user has a role stating which actions they are authorized to do (granted authorities). We keep track of the logged in user using a principal.
 
-#### 2.
+#### 2. OAuth
 The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either onbehalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf. This interaction is done using an OAuth access token, which contains user-allowed permissions, specifiying what can and cannot be done. Usually this token is in the form of a JWT (JSON Web Token).
 
 OAuth2 defines four roles: resource owner, resource server, client and authoirzation server.
+- Resource owner: An entity capable of granting access to a protected resource. When the resource owner is a person, it is referred to as an end-user.
+- Resource server: The server hosting the protected resources, capable of accepting and responding to protected resource requests using access tokens.
+- Client: An application making protected resource requests on behalf of the resource owner and with its authorization.  The term "client" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).
+- Authorization server: The server issuing access tokens to the client after successfully authenticating the resource owner and obtaining authorization.
+
+There are multiple different grant types which you can use with OAuth: authorization code, implicit, password credentials and client credentials. We will go more in depth on the authorization code grant:
+
+1. User authenticates with the client.
+2. The client makes an authorization code request to the authorization server.
+3. Redirects the client to login/authorization prompt.
+4. The user authenticates and gives consent.
+5. The authorizatoin server returns an authorization code.
+6. The client sends the authorization code, together with client id and secret back to the authorization server.
+7. The authorization server validates them.
+8. The authorization server returns a JWT access token.
+9. The client requests the resource from the resource server with the JWT access token.
+10. The client verifies the token (via the authorization server).
+11. The resource server sends the resource to the client.
+
+### 3. PCKE
+
 
 ### Sources
 1. [Five Spring Security Concepts - Authentication vs authorization - Java Brains Brain Bytes](https://www.youtube.com/watch?v=I0poT4UxFxE)
