@@ -61,7 +61,6 @@ export default function App() {
         authorizationUrl += "&code_challenge=" + codeChallenge;
         authorizationUrl += "&code_challenge_method=S256";
 
-        console.log(authorizationUrl);
         window.open(authorizationUrl, "authorizationRequestWindow", 'width=800, height=600, left-200, top=200');
     }
 
