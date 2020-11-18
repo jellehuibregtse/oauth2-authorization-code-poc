@@ -25,21 +25,21 @@ Before creating this implementation I had to do some research on OAuth and PKCE.
 
 ### Research questions
 1. What is the terminology used when we talk about securing an application?
-  * What is the difference between authentication and authorization?
-  * What different types of authentication are there?
-  * What is a principal?
-  * What is a role?
-  * What is a granted authority?
+   * What is the difference between authentication and authorization?
+   * What different types of authentication are there?
+   * What is a principal?
+   * What is a role?
+   * What is a granted authority?
 2. What is OAuth, it's terminology and what are it's use cases?
-  * What grant types are there?
-  * Which one is best for my use case?
-  * What is a resource?
-  * What is a resource owner?
-  * What is a client?
-  * What is an authorization server?
+   * What grant types are there?
+   * Which one is best for my use case?
+   * What is a resource?
+   * What is a resource owner?
+   * What is a client?
+   * What is an authorization server?
 3. What is PKCE?
-  * What is it used for?
-  * How does it work (what does it's flow look like)?
+   * What is it used for?
+   * How does it work (what does it's flow look like)?
   
 ### Method
 To answer these questions, I will be using the following methods:
@@ -71,13 +71,13 @@ OAuth2 defines four roles: resource owner, resource server, client and authoirza
 - Client: An application making protected resource requests on behalf of the resource owner and with its authorization.  The term "client" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).
 - Authorization server: The server issuing access tokens to the client after successfully authenticating the resource owner and obtaining authorization.
 
-There are multiple different grant types which you can use with OAuth: authorization code, implicit, password credentials and client credentials. We will go more in depth on the authorization code grant:
+There are multiple different grant types which you can use with OAuth: authorization code, implicit, password credentials and client credentials. We will go more in depth on the **authorization code grant**:
 
 1. User authenticates with the client.
 2. The client makes an authorization code request to the authorization server.
 3. Redirects the client to login/authorization prompt.
 4. The user authenticates and gives consent.
-5. The authorizatoin server returns an authorization code.
+5. The authorization server returns an authorization code.
 6. The client sends the authorization code, together with client id and secret back to the authorization server.
 7. The authorization server validates them.
 8. The authorization server returns a JWT access token.
@@ -86,6 +86,26 @@ There are multiple different grant types which you can use with OAuth: authoriza
 11. The resource server sends the resource to the client.
 
 ### 3. PCKE
+One of the issues of the authorization code grant is an authorization code interception attack. Someone steals the authorization code the client recieves during step 5. The basic idea behind PKCE is proof of possession, the client should give proof to the authorization server that the authorization code actually belongs to said client. PCKE introduces a few new variables into the mix: a code verifier, a code challenge and a code challenge method.
+
+- Code verifier: The code verifier should be a high-entropy cryptograhics random string with 43 to 128 characters, consisting only of A-Z, a-z, 0-9, "-", ".", "_" and "~".
+- Code challenge: The code challenge is basically the code verifier hashed using SHA256 and base64 URL encoding `Base64UrlEncode(SHA256Hash(code_verifier))`.
+- Code challenge method: An optional parameter, but you should use `SHA256`. Otherwise it will default to `plain`, which basically means that the code verifier and challenge are the same, which is not recommended.
+
+Now let's take a look at the flow (combined with authorization code grant):
+
+1. User authenticates with the client.
+2. *The client createsa cryptographically-random `code_verifier` and from this generates a `code_challenge` using SHA265.*
+2. The client makes an authorization code request to the authorization server *along with the `code_challenge`* and the client id.
+3. Redirects the client to login/authorization prompt.
+4. The user authenticates and gives consent.
+5. The authorization server *stores the `code_challenge` and* returns an authorization code.
+6. The client sends the authorization code, together with *the `code_verifier` to the authorization server.
+7. The authorization server validates the code and the `code_challenge` and `code_verifier`.
+8. The authorization server returns a JWT access token.
+9. The client requests the resource from the resource server with the JWT access token.
+10. The client verifies the token (via the authorization server).
+11. The resource server sends the resource to the client.
 
 
 ### Sources
@@ -94,3 +114,4 @@ There are multiple different grant types which you can use with OAuth: authoriza
 3. [OAuth terminologies and flows explained - OAuth tutorial - Java Brains](https://www.youtube.com/watch?v=3pZ3Nh8tgTE)
 4. [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce)
 5. [The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
+6. [What Is PKCE?](https://dzone.com/articles/what-is-pkce)
