@@ -48,6 +48,9 @@ To answer these questions, I will be using the following methods:
 - Literature study
 - Interview
 - Peer review
+- Workshop
+
+For my research I continuously used most of these methods. The sources for literature study, community research and best, good and bad practices are below. The interview, peer review and workshop consists of the interaction between me, my teacher [@leonvanbokhorst](https://github.com/leonvanbokhorst/) and my roommate [@koesie10](https://github.com/koesie10/).
 
 ### Answers
 
@@ -107,6 +110,7 @@ Now let's take a look at the flow (combined with authorization code grant):
 10. The client verifies the token (via the authorization server).
 11. The resource server sends the resource to the client.
 
+To prevent CSRF attacks you can even generate a `state`-value which you can send with the authorization code request and must store locally. When the authorization server returns the authorization code, it will also provide the `state`-value. When this value is not the same it may be a CSRF attack and the flow must be reset.
 
 ### Sources
 1. [Five Spring Security Concepts - Authentication vs authorization - Java Brains Brain Bytes](https://www.youtube.com/watch?v=I0poT4UxFxE)
@@ -115,3 +119,4 @@ Now let's take a look at the flow (combined with authorization code grant):
 4. [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce)
 5. [The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
 6. [What Is PKCE?](https://dzone.com/articles/what-is-pkce)
+7. [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/protocols/state-parameters)
