@@ -19,3 +19,41 @@ Then, finally to show the flow we have a React client as front-end. To get this 
 $ yarn start
 ```
 in the [client folder](../main/client).
+
+## Research
+Before creating this implementation I had to do some research on OAuth and PKCE. After that I needed to research this particular implementation. To do this research properly, I need to come up with some questions on the topics, so that I find the answers I need:
+
+### Research questions
+1. What is the terminology used when we talk about securing an application?
+  * What is the difference between authentication and authorization?
+  * What is a principal?
+  * What is a role?
+  * What is a granted authority?
+2. What is OAuth, it's terminology and what are it's use cases?
+  * What grant types are there?
+  * Which one is best for my use case?
+  * What is a resource?
+  * What is a resource owner?
+  * What is a client?
+  * What is an authorization server?
+3. What is PKCE?
+  * What is it used for?
+  * How does it work (what does it's flow look like)?
+
+### Answers
+
+#### Security terminology 
+When we want something from a web application, say a protected resource. The application can ask two questions: "Who are you"" and "What do you want?". Then, the user trying to access the protected research needs to answer this question, this is called *authentication*. Usually, this goes through accounts. The user needs to then tell the application, which account belongs to them. So, the user can tell the application that account with username, *username* belongs to them. Now, the user needs to prove that this is the case. Usually, this is usually done using a *password*.
+
+### Method
+To answer these questions, I will be using the following methods:
+- Best, good, and bad practices
+- Community research
+- Literature study
+- Interview
+- Peer review
+
+### Sources
+1. [Five Spring Security Concepts - Authentication vs authorization - Java Brains Brain Bytes](https://www.youtube.com/watch?v=I0poT4UxFxE)
+2. [What is OAuth really all about - OAuth tutorial - Java Brains](https://www.youtube.com/watch?v=t4-416mg6iU)
+3. [OAuth terminologies and flows explained - OAuth tutorial - Java Brains](https://www.youtube.com/watch?v=3pZ3Nh8tgTE)
