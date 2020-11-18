@@ -88,7 +88,7 @@ There are multiple different grant types which you can use with OAuth: authoriza
 10. The client verifies the token (via the authorization server).
 11. The resource server sends the resource to the client.
 
-### 3. PCKE
+#### 3. PCKE
 One of the issues of the authorization code grant is an authorization code interception attack. Someone steals the authorization code the client recieves during step 5. The basic idea behind PKCE is proof of possession, the client should give proof to the authorization server that the authorization code actually belongs to said client. PCKE introduces a few new variables into the mix: a code verifier, a code challenge and a code challenge method.
 
 - Code verifier: The code verifier should be a high-entropy cryptograhics random string with 43 to 128 characters, consisting only of A-Z, a-z, 0-9, "-", ".", "_" and "~".
