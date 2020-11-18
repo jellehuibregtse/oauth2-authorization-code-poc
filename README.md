@@ -100,7 +100,7 @@ Now let's take a look at the flow (combined with authorization code grant):
 3. Redirects the client to login/authorization prompt.
 4. The user authenticates and gives consent.
 5. The authorization server *stores the `code_challenge` and* returns an authorization code.
-6. The client sends the authorization code, together with *the `code_verifier` to the authorization server.
+6. The client sends the authorization code, together with *the `code_verifier` to the authorization server*.
 7. The authorization server validates the code and the `code_challenge` and `code_verifier`.
 8. The authorization server returns a JWT access token.
 9. The client requests the resource from the resource server with the JWT access token.
