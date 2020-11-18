@@ -95,20 +95,6 @@ export default function App() {
             success: postRequestAccessToken,
             data_type: "json"
         });
-
-        // (async () => {
-        //     const response = await fetch("http://localhost:8080/auth/realms/poc/protocol/openid-connect/token", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-        //             "Access-Control-Allow-Origin": "*"
-        //         },
-        //         body: data
-        //     });
-        //
-        //     const content = await response.json();
-        //     postRequestAccessToken(content);
-        // })();
     }
 
     const postRequestAccessToken = data => {
