@@ -40,10 +40,18 @@ Before creating this implementation I had to do some research on OAuth and PKCE.
 3. What is PKCE?
   * What is it used for?
   * How does it work (what does it's flow look like)?
+  
+### Method
+To answer these questions, I will be using the following methods:
+- Best, good, and bad practices
+- Community research
+- Literature study
+- Interview
+- Peer review
 
 ### Answers
 
-#### Security terminology 
+#### 1. Security terminology 
 When we want something from a web application, say a protected resource. The application can ask two questions: "Who are you"" and "What do you want?". 
 
 Firstly, the user trying to access the protected research needs to answer this first question, this is called **authentication**. Usually, this goes through accounts. The user needs to then tell the application, which account belongs to them. So, the user can tell the application that account with username, *username* belongs to them. Now, the user needs to prove that this is the case. Usually, this is usually done using a *password*. Other forms could be the use of a pincode or answering a question. This way of authenticating one's self is called *knowledge based authentication*, it's easy to implement and use. However, it's not fully safe, since someone can discover or steal your password. An alternative to this is *possesion based authentication*, this is where you use one's phone for example (in combination with text messages) to authenticate. Instead of a phone, key cards and badges or an access token device can be used aswell. If we combine the two, we call it *multi factor authentication*.
@@ -54,15 +62,14 @@ Lastely, when a user is authenticated and authorized to the protected resource, 
 
 In conclusion, authentication is simply the question of "Who is this user?" and authorization "Are they allowed to do this?". This user has a role stating which actions they are authorized to do (granted authorities). We keep track of the logged in user using a principal.
 
-### Method
-To answer these questions, I will be using the following methods:
-- Best, good, and bad practices
-- Community research
-- Literature study
-- Interview
-- Peer review
+#### 2.
+The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either onbehalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf. This interaction is done using an OAuth access token, which contains user-allowed permissions, specifiying what can and cannot be done. Usually this token is in the form of a JWT (JSON Web Token).
+
+OAuth2 defines four roles: resource owner, resource server, client and authoirzation server.
 
 ### Sources
 1. [Five Spring Security Concepts - Authentication vs authorization - Java Brains Brain Bytes](https://www.youtube.com/watch?v=I0poT4UxFxE)
 2. [What is OAuth really all about - OAuth tutorial - Java Brains](https://www.youtube.com/watch?v=t4-416mg6iU)
 3. [OAuth terminologies and flows explained - OAuth tutorial - Java Brains](https://www.youtube.com/watch?v=3pZ3Nh8tgTE)
+4. [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce)
+5. [The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
