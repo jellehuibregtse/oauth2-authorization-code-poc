@@ -26,6 +26,7 @@ Before creating this implementation I had to do some research on OAuth and PKCE.
 ### Research questions
 1. What is the terminology used when we talk about securing an application?
   * What is the difference between authentication and authorization?
+  * What different types of authentication are there?
   * What is a principal?
   * What is a role?
   * What is a granted authority?
@@ -43,7 +44,15 @@ Before creating this implementation I had to do some research on OAuth and PKCE.
 ### Answers
 
 #### Security terminology 
-When we want something from a web application, say a protected resource. The application can ask two questions: "Who are you"" and "What do you want?". Then, the user trying to access the protected research needs to answer this question, this is called *authentication*. Usually, this goes through accounts. The user needs to then tell the application, which account belongs to them. So, the user can tell the application that account with username, *username* belongs to them. Now, the user needs to prove that this is the case. Usually, this is usually done using a *password*.
+When we want something from a web application, say a protected resource. The application can ask two questions: "Who are you"" and "What do you want?". 
+
+Firstly, the user trying to access the protected research needs to answer this first question, this is called **authentication**. Usually, this goes through accounts. The user needs to then tell the application, which account belongs to them. So, the user can tell the application that account with username, *username* belongs to them. Now, the user needs to prove that this is the case. Usually, this is usually done using a *password*. Other forms could be the use of a pincode or answering a question. This way of authenticating one's self is called *knowledge based authentication*, it's easy to implement and use. However, it's not fully safe, since someone can discover or steal your password. An alternative to this is *possesion based authentication*, this is where you use one's phone for example (in combination with text messages) to authenticate. Instead of a phone, key cards and badges or an access token device can be used aswell. If we combine the two, we call it *multi factor authentication*.
+
+Secondly, the same user then needs to answer the second question. Then, the application needs to answer the following follow-up question: "Can this user do this"? The answer, is a simple yes or no. This is **authorization**. An example could be the following: a regular user can only do action 1, a manager can do action 1 and action 2, but then an admin can do all available actions. The user, manager and admin are all examples or roles. Then, if we take the manager role, that role is granted to do actions 1 and 2. These actions, which are granted by the system are called **granted authorities**. You can say that a role is a group of granted authorities.
+
+Lastely, when a user is authenticated and authorized to the protected resource, the system useses what we call a **principal** to keep track of the user. We can also say that the principal *is* the currently logged in user.
+
+In conclusion, authentication is simply the question of "Who is this user?" and authorization "Are they allowed to do this?". This user has a role stating which actions they are authorized to do (granted authorities). We keep track of the logged in user using a principal.
 
 ### Method
 To answer these questions, I will be using the following methods:
