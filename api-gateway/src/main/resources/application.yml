@@ -12,8 +12,13 @@ zuul:
     resource-service-one:
       sensitive-headers: Cookie,Set-Cookie
 
+
 management:
   endpoints:
     web:
       exposure:
         include: health,routes,info
+
+ribbon:
+  eager-load:
+    enabled: true
