@@ -1,25 +1,31 @@
 .container {
-  text-align: left;
-  margin: 10vw 10vh;
+    text-align: left;
+    margin: 10vw 10vh;
 }
 
 .section {
-  margin: 50px 50px 0 0;
-  outline: 1px black solid;
-  outline-offset: 10px;
+    margin: 50px 50px 0 0;
+    outline: 1px black solid;
+    outline-offset: 10px;
 }
 
 .line {
-  overflow: hidden;
-  position: relative;
+    overflow: hidden;
+    position: relative;
 }
 
 .line::after {
-  content: '';
-  width: 100%;
-  box-sizing: border-box;
-  border-top: 1px solid gray;
-  position: absolute;
-  bottom: 0.5em;
-  margin-left: 0.5em;
+    content: '';
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid gray;
+    position: absolute;
+    bottom: 0.5em;
+    margin-left: 0.5em;
+}
+
+span {
+    display: block;
+    width: 55vw;
+    word-wrap: break-word;
 }
