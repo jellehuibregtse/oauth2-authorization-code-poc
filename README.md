@@ -120,3 +120,4 @@ To prevent CSRF attacks you can even generate a `state`-value which you can send
 5. [The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
 6. [What Is PKCE?](https://dzone.com/articles/what-is-pkce)
 7. [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/protocols/state-parameters)
+8. [Proof Key for Code Exchange by OAuth Public Clients](https://tools.ietf.org/html/rfc7636)
