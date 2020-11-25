@@ -25,7 +25,7 @@ export default function App() {
     }
 
     const generateCodeVerifier = () => {
-        let returnValue, randomByteArray = new Uint8Array(32);
+        let returnValue, randomByteArray = new Uint8Array(43);
         window.crypto.getRandomValues(randomByteArray);
         returnValue = base64UrlEncode(randomByteArray);
 
