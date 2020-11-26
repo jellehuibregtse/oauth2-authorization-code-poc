@@ -3,6 +3,9 @@
 ## About
 This is a simple proof of concept for an OAuth2 implementation for the authorization code grant in Java Spring Boot using the microservices architecture. Furthermore, we use PKCE to make the flow even more secure. There are is one discovery server, one resource service and an api gateway. Eureka is being used for discovery and Zuul for the api gateway.
 
+## Disclaimer
+The entire flow is secure, because we use OAuth2 Authorization Code Grant with PKCE Enhancements and we also use state to prevent CSRF attacks. However, if you were to deploy this it would not be secure, because the entire architecture is using HTTP instead of more secure HTTPS. Setting HTTPS up in Java Spring Boot requires two steps getting an SSL certificte and setting it up.
+
 ## Getting Started
 Once you cloned the repository, start the discovery server, resource service and api gateway using
 ```console
