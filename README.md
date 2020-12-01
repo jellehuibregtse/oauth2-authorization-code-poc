@@ -27,22 +27,22 @@ in the [client folder](../main/client).
 Before creating this implementation I had to do some research on OAuth and PKCE. After that I needed to research this particular implementation. To do this research properly, I need to come up with some questions on the topics, so that I find the answers I need:
 
 ### Research questions
-1. What is the terminology used when we talk about securing an application?
+1. What is the terminology used when we talk about securing an application? (Best, good, and bad practices, community research and literature study)
    * What is the difference between authentication and authorization?
    * What different types of authentication are there?
    * What is a principal?
    * What is a role?
    * What is a granted authority?
-2. What is OAuth, it's terminology and what are it's use cases?
+2. What is OAuth, it's terminology and what are it's use cases? (Best, good, and bad practices, community research, literature study and workshop)
    * What grant types are there?
    * Which one is best for my use case?
    * What is a resource?
    * What is a resource owner?
    * What is a client?
    * What is an authorization server?
-3. What is PKCE?
+3. What is PKCE? (Workshop, peer review and literature study)
    * What is it used for?
-   * How does it work (what does it's flow look like)?
+   * How does it work (what does it's flow look like)? 
   
 ### Method
 To answer these questions, I will be using the following methods:
