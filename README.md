@@ -24,7 +24,7 @@ $ yarn start
 in the [client folder](../main/client).
 
 ## Research
-Before creating this implementation I had to do some research on OAuth and PKCE. After that I needed to research this particular implementation. To do this research properly, I need to come up with some questions on the topics, so that I find the answers I need:
+Before creating this implementation I had to do some research on OAuth and PKCE. After that I needed to research this particular implementation. To do this research properly, I need to come up with some questions on the topics, so that I find the answers I need. For this research I will be using the DOT framework. I also came up with an overarching general research question: How would OAuth2 be implemented in a Java Spring Boot microservices architecture? Since this is a large question, it is divided into smaller more answerable research questions with their own sub-questions:
 
 ### Research questions
 1. What is the terminology used when we talk about securing an application? (Best, good, and bad practices, community research and literature study)
