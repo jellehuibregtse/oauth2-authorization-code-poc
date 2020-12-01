@@ -27,31 +27,31 @@ in the [client folder](../main/client).
 Before creating this implementation I had to do some research on OAuth and PKCE. After that I needed to research this particular implementation. To do this research properly, I need to come up with some questions on the topics, so that I find the answers I need. For this research I will be using the DOT framework. I also came up with an overarching general research question: How would OAuth2 be implemented in a Java Spring Boot microservices architecture? Since this is a large question, it is divided into smaller more answerable research questions with their own sub-questions:
 
 ### Research questions
-1. What is the terminology used when we talk about securing an application? (Best, good, and bad practices, community research and literature study)
+1. What is the terminology used when we talk about securing an application?
    * What is the difference between authentication and authorization?
    * What different types of authentication are there?
    * What is a principal?
    * What is a role?
    * What is a granted authority?
-2. What is OAuth, it's terminology and what are it's use cases? (Best, good, and bad practices, community research, literature study and workshop)
+2. What is OAuth, it's terminology and what are it's use cases?
    * What grant types are there?
    * Which one is best for my use case?
    * What is a resource?
    * What is a resource owner?
    * What is a client?
    * What is an authorization server?
-3. What is PKCE? (Workshop, peer review and literature study)
+3. What is PKCE?
    * What is it used for?
    * How does it work (what does it's flow look like)? 
   
 ### Method
-To answer these questions, I will be using the following methods:
-- Best, good, and bad practices
-- Community research
-- Literature study
-- Interview
-- Peer review
-- Workshop
+Now that the questions are formulated, we can use the DOT framework using the following methods and strategies to answer these questions. I will assign the best suited methods and strategies to the questions.
+- Best, good, and bad practices (all three)
+- Community research (all three)
+- Literature study (all three)
+- Interview (two and three)
+- Peer review (two and three)
+- Workshop (two and three)
 
 For my research I continuously used most of these methods. The sources for literature study, community research and best, good and bad practices are below. The interview, peer review and workshop consists of the interaction between me, my teacher [@leonvanbokhorst](https://github.com/leonvanbokhorst/) and my roommate [@koesie10](https://github.com/koesie10/).
 
