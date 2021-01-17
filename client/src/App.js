@@ -1,6 +1,7 @@
 import './App.css';
 import $ from 'jquery';
 import React, {useState} from "react";
+import Stomp from 'stompjs';
 
 export default function App() {
 
@@ -11,7 +12,9 @@ export default function App() {
     const [authCode, setAuthCode] = useState();
     const [accessToken, setAccessToken] = useState();
     const [resourceData, setResourceData] = useState();
-
+    const [websocketConnection, setWebsocketConnection] = useState();
+    const [websocketData, setWebsocketData] = useState();
+    const [message, setMessage] = useState("");
 
     const generateState = () => {
         let value = "";
@@ -117,6 +120,38 @@ export default function App() {
         setResourceData(data);
     }
 
+    const register = () => {
+        let socket = new WebSocket('ws://localhost:8080/websockets');
+        setWebsocketConnection("connected to: " + socket.url);
+        let stompClient = Stomp.over(socket);
+        stompClient.debug = null;
+        socket.onclose = () => {setWebsocketConnection("disconnected from" + socket)};
+        stompClient.connect({}, function () {
+            stompClient.subscribe("/test", (m) => setWebsocketData(JSON.parse(m.body)));
+            setWebsocketConnection("connected to" + socket);
+        }, () => {});
+    }
+
+    const sendMessage = () => {
+        if(message !== "") {
+            setWebsocketData("The message you send was: " + message)
+            $.ajax({
+                beforeSend: function (request) {
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+                    request.setRequestHeader("Authorization", "Bearer " + accessToken)
+                },
+                type: "POST",
+                url: "http://localhost:8762/api/resource-service-one/resource/status/check",
+                data: message,
+                success: () => {setWebsocketData("send message")},
+                data_type: "json"
+            })
+        }
+        else {
+            setWebsocketData("Please enter a message before sending.")
+        }
+    }
+
     return (
         <div className="container">
             <h1>OAuth2 Authorization Code Grant PoC (PKCE Enhanced)</h1>
@@ -172,6 +207,23 @@ export default function App() {
                     <span id="resourceData">{resourceData}</span>
                 </p>
                 <input type="button" value="Get Data from Resource Service" onClick={getDataFromResourceService}/>
+            </div>
+
+            <div className="section">
+                <p>
+                    <label><strong>Websocket connection: </strong></label>
+                    <span id="resourceData">{websocketConnection}</span>
+                </p>
+                <input type="button" value="Connect" onClick={register}/>
+            </div>
+
+            <div className="section">
+                <p>
+                    <label><strong>Websocket data: </strong></label>
+                    <span id="resourceData">{websocketData}</span>
+                </p>
+                <input type="text" value={message} onChange={(e) => setMessage(e.target.value)}/>
+                <input type="button" value="Send message " onClick={sendMessage}/>
             </div>
         </div>
     );
