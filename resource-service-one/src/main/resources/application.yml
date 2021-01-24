@@ -19,4 +19,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,routes,info
+        include: health,info

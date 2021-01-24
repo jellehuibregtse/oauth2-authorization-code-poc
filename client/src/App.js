@@ -107,7 +107,7 @@ export default function App() {
                 request.setRequestHeader("Authorization", "Bearer " + accessToken)
             },
             type: "GET",
-            url: "http://localhost:8762/api/resource-service-one/resource/status/check",
+            url: "http://localhost:8762/resource/status/check",
             success: postDataFromResourceService,
             data_type: "json"
         })
