@@ -17,12 +17,19 @@ spring:
             - Method=GET
           filters:
             - RemoveRequestHeader=Cookie
+        - id: resource-service-one-websocket
+          uri: lb:ws://resource-service-one
+          predicates:
+            - Path=/chat
+          filters:
+            - RemoveRequestHeader=Cookie
       globalcors:
         cors-configurations:
           '[/**]':
             allowedOrigins: "*"
             allowedHeaders: "*"
             allowedMethods: "*"
+            allowCredentials: true
         add-to-simple-url-handler-mapping: true
 
 management:

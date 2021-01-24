@@ -1,6 +1,8 @@
 import './App.css';
 import $ from 'jquery';
 import React, {useState} from "react";
+import Stomp from 'stompjs';
+import SockJs from 'sockjs-client';
 
 export default function App() {
 
@@ -12,6 +14,12 @@ export default function App() {
     const [accessToken, setAccessToken] = useState();
     const [resourceData, setResourceData] = useState();
 
+    const [connected, setConnected] = useState(false);
+    const [websocketConnection, setWebsocketConnection] = useState();
+    const [websocketData, setWebsocketData] = useState();
+    const [message, setMessage] = useState("");
+
+    let ws;
 
     const generateState = () => {
         let value = "";
@@ -117,6 +125,34 @@ export default function App() {
         setResourceData(data);
     }
 
+    const connect = () => {
+        const socket = new SockJs("http://localhost:8762/chat/");
+        ws = Stomp.over(socket);
+
+        ws.connect({}, () => {
+            ws.subscribe("/topic/user", function (message) {
+                setMessage("Message received: " + message);
+            });
+            setConnected(true);
+        });
+    }
+
+    const disconnect = () => {
+        if (ws !== null) {
+            ws.close();
+            setConnected(false);
+        }
+
+        setWebsocketConnection("Disconnected");
+    }
+
+    const sendMessage = () => {
+        ws.send('/app/user-all', JSON.stringify({
+            name: 'OAuth2 PoC',
+            message: message
+        }));
+    }
+
     return (
         <div className="container">
             <h1>OAuth2 Authorization Code Grant PoC (PKCE Enhanced)</h1>
@@ -172,6 +208,26 @@ export default function App() {
                     <span id="resourceData">{resourceData}</span>
                 </p>
                 <input type="button" value="Get Data from Resource Service" onClick={getDataFromResourceService}/>
+            </div>
+
+            <div className="section">
+                <p>
+                    <label><strong>Websocket connection: </strong></label>
+                    <span id="resourceData">{websocketConnection}</span>
+                </p>
+                <input type="button" value="Connect" onClick={connect}/>
+            </div>
+
+            <div className="section">
+                <p>
+                    <label><strong>Websocket data: </strong></label>
+                    <span id="resourceData">{websocketData}</span>
+                </p>
+                <input type="text" value={message} onChange={(e) => setMessage(e.target.value)}/>
+                {connected ?
+                    <input type="button" value="Send message " onClick={sendMessage}/> :
+                    <input type="button" value="Send message " onClick={sendMessage} disabled/>
+                }
             </div>
         </div>
     );
